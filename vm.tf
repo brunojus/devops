@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "example" {
 
 resource "azurerm_linux_virtual_machine" "example" {
   count               = 2  
-  name                = "AZ-VM-00-${count.index}"
+  name                = "AZ-VM-${count.index}-${count.index}"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   size                = "Standard_B1s"
@@ -13,7 +13,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   admin_password      = "SETPASSWORD"   
 
   network_interface_ids = [
-     azurerm_network_interface.rg.*.id[count.index],
+     azurerm_network_interface.example.*.id[count.index],
   ]
 
   admin_ssh_key {
@@ -28,9 +28,9 @@ resource "azurerm_linux_virtual_machine" "example" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
+    offer     = "0001-com-ubuntu-server-focal"
+    sku       = "20_04-lts-gen2"
+    version   = "20.04.202209200"
   }
 
 }

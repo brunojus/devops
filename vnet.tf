@@ -14,7 +14,7 @@ resource "azurerm_subnet" "example" {
 
 resource "azurerm_network_interface" "example" {
   count = 2  
-  name                = "AZ-VM-00-NIC-${count.index}"
+  name                = "AZ-VM-${count.index}-NIC-${count.index}"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
@@ -22,6 +22,6 @@ resource "azurerm_network_interface" "example" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.public_ip.id
+    public_ip_address_id          = "${element(azurerm_public_ip.public_ip.*.id, count.index)}" 
   }
 }
