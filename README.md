@@ -9,3 +9,16 @@
 
 ## Destroying the created infrastructure
 * terraform destroy
+
+
+## Ansible 
+
+* ansible all --key-file ~/.ssh/id_rsa -i inventory -m ping
+
+After writing the ansible.cfg
+
+* ansible all -m ping
+
+Check the information about your hosts
+
+* ansible all -m gather_facts
