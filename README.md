@@ -22,3 +22,7 @@ After writing the ansible.cfg
 Check the information about your hosts
 
 * ansible all -m gather_facts
+
+Running ansible commands with elevated level
+
+* ansible all -m apt -a update_cache=true --become --ask-become-pass
