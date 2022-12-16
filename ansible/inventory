@@ -1,2 +1,2 @@
-20.102.52.30
-20.120.104.195
+20.102.52.30 ansible_user=adminuser
+20.120.104.195 ansible_user=adminuser
